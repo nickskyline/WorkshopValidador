@@ -1,15 +1,13 @@
 package com.workshop.procesador.controller;
 
-import com.workshop.procesador.component.ProcesadorDocumentoStrategyFactory;
-import com.workshop.procesador.dto.DocumentoCsvDto;
 import com.workshop.procesador.dto.DocumentoDto;
-import com.workshop.procesador.dto.ProcesadorDocumento;
 import com.workshop.procesador.service.DocumentService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/files")
@@ -24,7 +22,7 @@ public class DocumentoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void uploadFile(@RequestBody DocumentoDto documento) {
-        uploadFile(documento);
+    public ResponseEntity<Map<String, Integer>> uploadFile(@RequestBody DocumentoDto documento) {
+        return new ResponseEntity<>(this.documentService.uploadFile(documento), HttpStatus.CREATED);
     }
 }

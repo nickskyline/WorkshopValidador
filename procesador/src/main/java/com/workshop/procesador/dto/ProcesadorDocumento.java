@@ -1,7 +1,7 @@
 package com.workshop.procesador.dto;
 
-import org.springframework.web.multipart.MultipartFile;
+import java.util.Map;
 
 public interface ProcesadorDocumento {
-    void procesarDocumento(MultipartFile file);
+    Map<String, Integer> procesarDocumento(String file);
 }

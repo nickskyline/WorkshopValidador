@@ -8,10 +8,10 @@ import org.springframework.http.MediaType;
 
 import java.util.List;
 
-@FeignClient(name = "Document Processor", url = "localhost:8090", configuration = FeignClient.class)
+@FeignClient(name = "Document Processor", url = "http://localhost:8080", configuration = FeignClient.class)
 public interface DocumentFeignClient {
 
     @PostMapping(value = "/files", consumes = MediaType.APPLICATION_JSON_VALUE)
-    DocumentoDto uploadFile(@RequestBody DocumentoDto documento);
+    Boolean upload(@RequestBody String documento);
 
 }
