@@ -7,11 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/files")
-
 public class DocumentoController {
     private final DocumentService documentService;
     @Autowired
@@ -22,7 +22,7 @@ public class DocumentoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Map<String, Integer>> uploadFile(@RequestBody DocumentoDto documento) {
+    public ResponseEntity<Map<String, Integer>> uploadFile(@RequestBody DocumentoDto documento) throws FileNotFoundException {
         return new ResponseEntity<>(this.documentService.uploadFile(documento), HttpStatus.CREATED);
     }
 }

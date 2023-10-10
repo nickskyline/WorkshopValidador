@@ -7,11 +7,13 @@ import javax.swing.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @Service
-
 public class ValidadorCSV {
 
     public boolean validarCorreoElectronico(String correo) {
@@ -23,8 +25,9 @@ public class ValidadorCSV {
     }
 
     public boolean validarFechaNacimiento(String fechaNacimiento) {
+        DateTimeFormatter formatoMmDdYyyy = DateTimeFormatter.ofPattern("yyyy-M-d");
         LocalDate fechaMinima = LocalDate.of(1980, 1, 1);
-        LocalDate fechaNac = LocalDate.parse(fechaNacimiento);
+        LocalDate fechaNac = LocalDate.parse(fechaNacimiento, formatoMmDdYyyy);
         return fechaNac.isAfter(fechaMinima);
     }
 
@@ -43,17 +46,17 @@ public class ValidadorCSV {
         }
         return false;
     }
-        public boolean validarRegistro(String file) {
+        public boolean validarRegistros(String[] file) {
+            Map<String, String> data = new HashMap<>();
+            DateTimeFormatter formatoMmDdYyyy = DateTimeFormatter.ofPattern("yyyy-M-d");
 
-            String[] parametros = file.split(",");
-            People people = new People();
-            people.setEmail(parametros[0]);
-            people.setBirthDate(LocalDate.parse(parametros[1]));
-            people.setJobTitle(parametros[2]);
+            data.put("email", file[5]);
+            data.put("birthDate", file[7]);
+            data.put("jobTitle", file[8]);
 
-            boolean correoValido = validarCorreoElectronico(people.getEmail());
-            boolean fechaValida = validarFechaNacimiento(String.valueOf(people.getBirthDate()));
-            boolean tituloValido = validarTituloTrabajo(people.getJobTitle());
+            boolean correoValido = validarCorreoElectronico(data.get("email"));
+            boolean fechaValida = validarFechaNacimiento(data.get("birthDate"));
+            boolean tituloValido = validarTituloTrabajo(data.get("jobTitle"));
 
             return correoValido && fechaValida && tituloValido;
         }

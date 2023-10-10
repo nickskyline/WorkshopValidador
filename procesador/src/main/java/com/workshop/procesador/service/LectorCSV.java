@@ -1,23 +1,29 @@
 package com.workshop.procesador.service;
 
 import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvException;
 import com.workshop.procesador.dto.ProcesadorDocumento;
 import com.workshop.procesador.feign.DocumentFeignClient;
-import feign.Response;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 
+@Component
 public class LectorCSV implements ProcesadorDocumento {
     private CSVReader lector;
     private String linea;
     private String partes[] = null;
 
     private DocumentFeignClient documentFeignClient;
+    @Autowired
+    public LectorCSV(DocumentFeignClient documentFeignClient) {
+        this.documentFeignClient = documentFeignClient;
+    }
 
     public Map<String, Integer> procesarDocumento(String file) {
         int lineasValidas = 0;
@@ -25,23 +31,20 @@ public class LectorCSV implements ProcesadorDocumento {
         Map<String, Integer> validaciones = new HashMap<>();
 
         try {
-            lector = new CSVReader(new FileReader("/home/nicolas/Downloads/people.csv"));
-            while ((linea = lector.readNext() != null)) {
-                partes = linea.split(",");
+            lector = new CSVReader(new FileReader(file));
 
-                Response validacion = new RestTemplate().postForEntity(
-                        "http://localhost:8080/api/v1/csv", linea, Response.class).getBody();
+            while ((partes = lector.readNext()) != null) {
 
-                if (documentFeignClient.upload(linea)) {
+                if (documentFeignClient.upload(partes)) {
                     lineasValidas++;
                 } else {
                     lineasInvalidas++;
                 }
 
             }
-            lector.close();
-            linea = null;
-            partes = null;
+            //lector.close();
+            linea = "";
+            //partes = null;
         } catch (Exception e) {
             e.getMessage();
         }

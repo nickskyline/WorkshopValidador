@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.print.Doc;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,21 +26,7 @@ public class DocumentService {
     private final ProcesadorDocumentoStrategyFactory procesadorDocumentoStrategyFactory;
     private DocumentFeignClient documentFeignClient;
 
-   public void upload(String documentoDto) {
-        documentFeignClient.upload(documentoDto);
-    }
-
-    private String getFileType(String fileName) {
-        // Implementa la lógica para detectar el tipo de archivo (por ejemplo, por extensión)
-        String[] parts = fileName.split("\\.");
-        if (parts.length > 0) {
-            return parts[parts.length - 1].toLowerCase();
-        }
-        return "";
-    }
-
-    @PostMapping("/upload")
-    public Map<String, Integer> uploadFile(@RequestBody DocumentoDto documentoDto) {
+    public Map<String, Integer> uploadFile(DocumentoDto documentoDto) throws FileNotFoundException {
 
         // Determina el tipo de archivo
         String fileType = documentoDto.getFileType();
@@ -47,6 +34,6 @@ public class DocumentService {
         // Obtén la estrategia adecuada del factory
         ProcesadorDocumento strategy = procesadorDocumentoStrategyFactory.getStrategy(fileType);
 
-        return strategy.procesarDocumento(fileType);
+        return strategy.procesarDocumento(documentoDto.getRuta());
     }
 }
