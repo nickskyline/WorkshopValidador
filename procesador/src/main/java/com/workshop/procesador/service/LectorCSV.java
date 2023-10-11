@@ -29,20 +29,23 @@ public class LectorCSV implements ProcesadorDocumento {
         int lineasValidas = 0;
         int lineasInvalidas = 0;
         Map<String, Integer> validaciones = new HashMap<>();
+        Map<String, Object> datos = new HashMap<>();
 
         try {
             lector = new CSVReader(new FileReader(file));
 
             while ((partes = lector.readNext()) != null) {
+                datos.put("tipo",".csv");
+                datos.put("datos",partes);
 
-                if (documentFeignClient.upload(partes)) {
+                if (documentFeignClient.upload(datos)) {
                     lineasValidas++;
                 } else {
                     lineasInvalidas++;
                 }
-
+                datos.clear();
             }
-            //lector.close();
+            lector.close();
             linea = "";
             //partes = null;
         } catch (Exception e) {

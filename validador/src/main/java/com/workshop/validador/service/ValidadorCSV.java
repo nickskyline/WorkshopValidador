@@ -15,7 +15,6 @@ import java.util.regex.Pattern;
 
 @Service
 public class ValidadorCSV {
-
     public boolean validarCorreoElectronico(String correo) {
         // Expresión regular para validar un correo electrónico
         String regex = "^[A-Za-z0-9+_.-]+@(.+)$";

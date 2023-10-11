@@ -28,10 +28,8 @@ public class DocumentService {
 
     public Map<String, Integer> uploadFile(DocumentoDto documentoDto) throws FileNotFoundException {
 
-        // Determina el tipo de archivo
         String fileType = documentoDto.getFileType();
 
-        // Obtén la estrategia adecuada del factory
         ProcesadorDocumento strategy = procesadorDocumentoStrategyFactory.getStrategy(fileType);
 
         return strategy.procesarDocumento(documentoDto.getRuta());
