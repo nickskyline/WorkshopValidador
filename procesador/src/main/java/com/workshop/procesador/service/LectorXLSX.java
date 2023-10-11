@@ -5,12 +5,14 @@ import com.workshop.procesador.dto.DocumentXLSX;
 import com.workshop.procesador.dto.ProcesadorDocumento;
 import com.workshop.procesador.feign.DocumentFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class LectorXLSX implements ProcesadorDocumento {
 
     private DocumentFeignClient documentFeignClient;
@@ -26,11 +28,13 @@ public class LectorXLSX implements ProcesadorDocumento {
         int lineasInvalidas = 0;
         File archivo = new File(file);
         List<DocumentXLSX> registros = Poiji.fromExcel(archivo, DocumentXLSX.class);
-        Map<String, Object> datos = new HashMap<>();
+        Map<String, String[]> datos = new HashMap<>();
+        Map<String, Integer> validaciones = new HashMap<>();
         for (DocumentXLSX registro: registros) {
             String row = registro.getInjuryLocation()+","+registro.getReportType();
             String[] arrayRow = row.split(",");
-            datos.put("tipo",".xlsx");
+            String[] tipo = new String[]{".xlsx"};
+            datos.put("tipo", tipo);
             datos.put("datos",arrayRow);
             if (documentFeignClient.upload(datos)) {
                 lineasValidas++;
@@ -39,6 +43,9 @@ public class LectorXLSX implements ProcesadorDocumento {
             }
             datos.clear();
         }
+
+        validaciones.put("lineasValidas", lineasValidas);
+        validaciones.put("lineasInvalidas", lineasInvalidas);
 
         return null;
     }

@@ -24,7 +24,6 @@ import java.util.Map;
 public class DocumentService {
 
     private final ProcesadorDocumentoStrategyFactory procesadorDocumentoStrategyFactory;
-    private DocumentFeignClient documentFeignClient;
 
     public Map<String, Integer> uploadFile(DocumentoDto documentoDto) throws FileNotFoundException {
 

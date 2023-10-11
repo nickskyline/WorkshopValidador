@@ -1,7 +1,6 @@
 package com.workshop.procesador.component;
 
 import com.workshop.procesador.dto.ProcesadorDocumento;
-import com.workshop.procesador.feign.DocumentFeignClient;
 import com.workshop.procesador.service.LectorCSV;
 import com.workshop.procesador.service.LectorXLSX;
 import lombok.RequiredArgsConstructor;
@@ -19,9 +18,11 @@ public class ProcesadorDocumentoStrategyFactory {
     private LectorXLSX lectorXLSX;
 
     private Map<String, ProcesadorDocumento> strategies;
+
     @Autowired
-    public ProcesadorDocumentoStrategyFactory(LectorCSV lectorCSV) {
+    public ProcesadorDocumentoStrategyFactory(LectorCSV lectorCSV, LectorXLSX lectorXLSX) {
         this.lectorCSV = lectorCSV;
+        this.lectorXLSX = lectorXLSX;
         strategies = new HashMap<>(){{
             put(".csv", lectorCSV);
             put(".xlsx", lectorXLSX);

@@ -1,11 +1,9 @@
 package com.workshop.validador.service;
 
-import com.workshop.validador.model.People;
+import com.workshop.validador.model.ValidadorRegistro;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
@@ -13,13 +11,30 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-@Service
-public class ValidadorCSV {
+@Component
+public class ValidadorCSV implements ValidadorRegistro {
+
+    @Override
+    public boolean validarRegistros(String[] file) {
+
+        Map<String, String> data = new HashMap<>();
+
+        data.put("email", file[5]);
+        data.put("birthDate", file[7]);
+        data.put("jobTitle", file[8]);
+
+        boolean correoValido = validarCorreoElectronico(data.get("email"));
+        boolean fechaValida = validarFechaNacimiento(data.get("birthDate"));
+        boolean tituloValido = validarTituloTrabajo(data.get("jobTitle"));
+
+        return correoValido && fechaValida && tituloValido;
+    }
     public boolean validarCorreoElectronico(String correo) {
-        // Expresión regular para validar un correo electrónico
+
         String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(correo);
+
         return matcher.matches();
     }
 
@@ -45,20 +60,7 @@ public class ValidadorCSV {
         }
         return false;
     }
-        public boolean validarRegistros(String[] file) {
-            Map<String, String> data = new HashMap<>();
-            DateTimeFormatter formatoMmDdYyyy = DateTimeFormatter.ofPattern("yyyy-M-d");
 
-            data.put("email", file[5]);
-            data.put("birthDate", file[7]);
-            data.put("jobTitle", file[8]);
-
-            boolean correoValido = validarCorreoElectronico(data.get("email"));
-            boolean fechaValida = validarFechaNacimiento(data.get("birthDate"));
-            boolean tituloValido = validarTituloTrabajo(data.get("jobTitle"));
-
-            return correoValido && fechaValida && tituloValido;
-        }
     }
 
 

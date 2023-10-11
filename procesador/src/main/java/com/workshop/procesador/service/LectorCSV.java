@@ -2,6 +2,7 @@ package com.workshop.procesador.service;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
+import com.workshop.procesador.dto.DocumentoDto;
 import com.workshop.procesador.dto.ProcesadorDocumento;
 import com.workshop.procesador.feign.DocumentFeignClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import java.util.*;
 @Component
 public class LectorCSV implements ProcesadorDocumento {
     private CSVReader lector;
-    private String linea;
     private String partes[] = null;
 
     private DocumentFeignClient documentFeignClient;
@@ -29,14 +29,22 @@ public class LectorCSV implements ProcesadorDocumento {
         int lineasValidas = 0;
         int lineasInvalidas = 0;
         Map<String, Integer> validaciones = new HashMap<>();
-        Map<String, Object> datos = new HashMap<>();
+        Map<String, String[]> datos = new HashMap<>();
 
         try {
             lector = new CSVReader(new FileReader(file));
-
+            boolean firstRow = true;
             while ((partes = lector.readNext()) != null) {
-                datos.put("tipo",".csv");
+
+                if (firstRow) {
+                    // Saltar la primera fila (encabezados)
+                    firstRow = false;
+                    continue;
+                }
+                String[] tipo = new String[]{".csv"};
+                datos.put("tipo", tipo);
                 datos.put("datos",partes);
+
 
                 if (documentFeignClient.upload(datos)) {
                     lineasValidas++;
@@ -46,7 +54,6 @@ public class LectorCSV implements ProcesadorDocumento {
                 datos.clear();
             }
             lector.close();
-            linea = "";
             //partes = null;
         } catch (Exception e) {
             e.getMessage();
