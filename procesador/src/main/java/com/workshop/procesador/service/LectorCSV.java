@@ -2,6 +2,7 @@ package com.workshop.procesador.service;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
+import com.workshop.procesador.dto.DocumentRequest;
 import com.workshop.procesador.dto.DocumentoDto;
 import com.workshop.procesador.dto.ProcesadorDocumento;
 import com.workshop.procesador.feign.DocumentFeignClient;
@@ -18,7 +19,6 @@ import java.util.*;
 public class LectorCSV implements ProcesadorDocumento {
     private CSVReader lector;
     private String partes[] = null;
-
     private DocumentFeignClient documentFeignClient;
     @Autowired
     public LectorCSV(DocumentFeignClient documentFeignClient) {
@@ -29,11 +29,11 @@ public class LectorCSV implements ProcesadorDocumento {
         int lineasValidas = 0;
         int lineasInvalidas = 0;
         Map<String, Integer> validaciones = new HashMap<>();
-        Map<String, String[]> datos = new HashMap<>();
 
         try {
             lector = new CSVReader(new FileReader(file));
             boolean firstRow = true;
+
             while ((partes = lector.readNext()) != null) {
 
                 if (firstRow) {
@@ -41,20 +41,19 @@ public class LectorCSV implements ProcesadorDocumento {
                     firstRow = false;
                     continue;
                 }
-                String[] tipo = new String[]{".csv"};
-                datos.put("tipo", tipo);
-                datos.put("datos",partes);
 
+                DocumentRequest dtoRequest = new DocumentRequest();
+                dtoRequest.setRegistros(partes);
+                dtoRequest.setTipo(".csv");
 
-                if (documentFeignClient.upload(datos)) {
+                if (documentFeignClient.upload(dtoRequest)) {
                     lineasValidas++;
                 } else {
                     lineasInvalidas++;
                 }
-                datos.clear();
             }
             lector.close();
-            //partes = null;
+
         } catch (Exception e) {
             e.getMessage();
         }

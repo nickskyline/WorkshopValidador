@@ -1,6 +1,7 @@
 package com.workshop.procesador.service;
 
 import com.poiji.bind.Poiji;
+import com.workshop.procesador.dto.DocumentRequest;
 import com.workshop.procesador.dto.DocumentXLSX;
 import com.workshop.procesador.dto.ProcesadorDocumento;
 import com.workshop.procesador.feign.DocumentFeignClient;
@@ -24,29 +25,34 @@ public class LectorXLSX implements ProcesadorDocumento {
 
     @Override
     public Map<String, Integer> procesarDocumento(String file) {
+
         int lineasValidas = 0;
         int lineasInvalidas = 0;
+
         File archivo = new File(file);
         List<DocumentXLSX> registros = Poiji.fromExcel(archivo, DocumentXLSX.class);
-        Map<String, String[]> datos = new HashMap<>();
+
         Map<String, Integer> validaciones = new HashMap<>();
+
         for (DocumentXLSX registro: registros) {
             String row = registro.getInjuryLocation()+","+registro.getReportType();
             String[] arrayRow = row.split(",");
-            String[] tipo = new String[]{".xlsx"};
-            datos.put("tipo", tipo);
-            datos.put("datos",arrayRow);
-            if (documentFeignClient.upload(datos)) {
+
+
+            DocumentRequest dtoRequest = new DocumentRequest();
+            dtoRequest.setRegistros(arrayRow);
+            dtoRequest.setTipo(".xlsx");
+
+            if (documentFeignClient.upload(dtoRequest)) {
                 lineasValidas++;
             } else {
                 lineasInvalidas++;
             }
-            datos.clear();
         }
 
         validaciones.put("lineasValidas", lineasValidas);
         validaciones.put("lineasInvalidas", lineasInvalidas);
 
-        return null;
+        return validaciones;
     }
 }

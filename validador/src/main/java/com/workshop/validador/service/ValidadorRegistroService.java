@@ -1,6 +1,7 @@
 package com.workshop.validador.service;
 
 import com.workshop.validador.factory.ValidadorDocumentoStrategyFactory;
+import com.workshop.validador.model.DocumentRequest;
 import com.workshop.validador.model.ValidadorRegistro;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,12 +15,12 @@ public class ValidadorRegistroService {
 
     private final ValidadorDocumentoStrategyFactory validadorDocumentoStrategyFactory;
 
-    public boolean validarRegistros(Map<String, String[]> datos) {
+    public boolean validarRegistros(DocumentRequest datos) {
 
-        String fileType = datos.get("tipo")[0].toString();
+        String fileType = datos.getTipo();
         ValidadorRegistro strategy = validadorDocumentoStrategyFactory.getStrategy(fileType);
 
-        String[] row = datos.get("datos");
+        String[] row = datos.getRegistros();
         return strategy.validarRegistros(row);
     }
 

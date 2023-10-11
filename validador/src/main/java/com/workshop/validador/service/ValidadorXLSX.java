@@ -1,5 +1,6 @@
 package com.workshop.validador.service;
 
+import com.workshop.validador.model.DocumentRequest;
 import com.workshop.validador.model.ValidadorRegistro;
 import org.springframework.stereotype.Component;
 
