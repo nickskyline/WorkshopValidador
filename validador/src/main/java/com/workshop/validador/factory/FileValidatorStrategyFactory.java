@@ -23,7 +23,7 @@ public class FileValidatorStrategyFactory {
         this.csvValidatorService = csvValidatorService;
         this.xlsxValidatorService = xlsxValidatorService;
         this.strategies = new HashMap<>(){{
-            put(".csv", xlsxValidatorService);
+            put(".csv", csvValidatorService);
             put(".xlsx", xlsxValidatorService);
         }};
     }
