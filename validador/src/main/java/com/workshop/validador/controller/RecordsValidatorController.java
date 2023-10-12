@@ -13,15 +13,15 @@ import java.util.Map;
 
 @RestController
 @RequestMapping(path = "api/v1/files")
-public class ValidadorRegistroController {
+public class RecordsValidatorController {
 
     @Autowired
-    private ValidadorRegistroService validadorRegistroService;
+    private RecordsValidatorService recordsValidatorService;
 
 
     @PostMapping
-    public boolean validarRegistros(@RequestBody DocumentRequest datos) {
+    public boolean validateRecords(@RequestBody FileRequestDTO data) {
 
-        return this.validadorRegistroService.validarRegistros(datos);
+        return this.recordsValidatorService.validateRecords(data);
     }
 }

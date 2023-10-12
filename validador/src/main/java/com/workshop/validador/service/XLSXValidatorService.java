@@ -1,14 +1,14 @@
 package com.workshop.validador.service;
 
-import com.workshop.validador.model.DocumentRequest;
-import com.workshop.validador.model.ValidadorRegistro;
+import com.workshop.validador.dto.FileRequestDTO;
+import com.workshop.validador.dto.RecordValidatorDTO;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ValidadorXLSX implements ValidadorRegistro {
+public class XLSXValidatorService implements RecordValidatorDTO {
     @Override
-    public boolean validarRegistros(String[] file) {
-        return isValidInjuryLocation(file[0]) && isValidReportType(file[1]);
+    public boolean validateRecords(String[] data) {
+        return isValidInjuryLocation(data[0]) && isValidReportType(data[1]);
     }
 
     private boolean isValidInjuryLocation(String injuryLocation) {

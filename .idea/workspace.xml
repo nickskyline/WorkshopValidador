@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9ed2ab06-7744-4310-9020-4ac28921c2ef" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/dto/RecordValidatorDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/ProcesadorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/ProcessorApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/component/ProcesadorDocumentoStrategyFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/component/FileProcessorStrategyFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/controller/DocumentoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/controller/FileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/dto/DocumentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/dto/FileRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/dto/DocumentXLSX.java" beforeDir="false" afterPath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/dto/XLSXFileDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/dto/DocumentoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/dto/FileDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/dto/ProcesadorDocumento.java" beforeDir="false" afterPath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/dto/FileProcessorDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/feign/DocumentFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/feign/FeignFileClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/service/DocumentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/service/FileService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/service/LectorCSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/service/CSVReaderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/service/LectorXLSX.java" beforeDir="false" afterPath="$PROJECT_DIR$/procesador/src/main/java/com/workshop/procesador/service/XLSXReaderService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/procesador/src/test/java/com/workshop/procesador/ProcesadorApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/procesador/src/test/java/com/workshop/procesador/ProcessorApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/ValidadorApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/ValidatorApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/controller/ValidadorRegistroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/controller/RecordsValidatorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/factory/ValidadorDocumentoStrategyFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/factory/FileValidatorStrategyFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/model/DocumentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/dto/FileRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/model/People.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/model/Safety.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/model/ValidadorRegistro.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/service/ValidadorCSV.java" beforeDir="false" afterPath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/service/CSVValidatorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/service/ValidadorRegistroService.java" beforeDir="false" afterPath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/service/RecordsValidatorService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/service/ValidadorXLSX.java" beforeDir="false" afterPath="$PROJECT_DIR$/validador/src/main/java/com/workshop/validador/service/XLSXValidatorService.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="juanquintero" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="2WaoMBo6WIYxyO9Ak4X4R8la9Ao" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9ed2ab06-7744-4310-9020-4ac28921c2ef" name="Changes" comment="" />
+      <created>1696980004588</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1696980004588</updated>
+    </task>
+    <servers />
+  </component>
+</project>

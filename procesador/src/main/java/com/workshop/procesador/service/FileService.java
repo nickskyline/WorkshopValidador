@@ -21,16 +21,16 @@ import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
-public class DocumentService {
+public class FileService {
 
-    private final ProcesadorDocumentoStrategyFactory procesadorDocumentoStrategyFactory;
+    private final FileProcessorStrategyFactory fileProcessorStrategyFactory;
 
-    public Map<String, Integer> uploadFile(DocumentoDto documentoDto) throws FileNotFoundException {
+    public Map<String, Integer> uploadFile(FileDTO fileDTO) throws FileNotFoundException {
 
-        String fileType = documentoDto.getFileType();
+        String fileType = fileDTO.getFileType();
 
-        ProcesadorDocumento strategy = procesadorDocumentoStrategyFactory.getStrategy(fileType);
+        GetStrategy getStrategy = FileProcessorStrategyFactory.getStrategy(fileType);
 
-        return strategy.procesarDocumento(documentoDto.getRuta());
+        return getStrategy.FileProcess(FileDTO.getPath());
     }
 }

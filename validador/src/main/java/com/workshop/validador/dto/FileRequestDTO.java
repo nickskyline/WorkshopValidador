@@ -1,4 +1,4 @@
-package com.workshop.validador.model;
+package com.workshop.validador.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,8 +9,9 @@ import org.springframework.stereotype.Component;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class DocumentRequest {
-    private String tipo;
-    private String[] registros;
+public class FileRequestDTO
+{
+    private String type;
+    private String[] records;
 
 }

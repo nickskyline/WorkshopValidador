@@ -10,9 +10,9 @@ import java.util.List;
 import java.util.Map;
 
 @FeignClient(name = "DOCUMENT-MOCK-API", url = "http://localhost:8080", configuration = FeignClientConfig.class)
-public interface DocumentFeignClient {
+public interface FeignFileClient {
 
     @PostMapping(value = "api/v1/files", consumes = MediaType.APPLICATION_JSON_VALUE)
-    boolean upload(@RequestBody DocumentRequest datos);
+    boolean upload(@RequestBody FileRequestDTO data);
 
 }

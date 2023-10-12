@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @Data
-public class DocumentRequest {
-    private String tipo;
-    private String[] registros;
+public class FileRequestDTO {
+    private String type;
+    private String[] records;
 }

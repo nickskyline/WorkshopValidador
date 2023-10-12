@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @ExcelSheet("SafetyData")
-public class DocumentXLSX {
+public class XLSXFileDTO {
     @ExcelCell(0)
     private String date;
     @ExcelCell(1)
