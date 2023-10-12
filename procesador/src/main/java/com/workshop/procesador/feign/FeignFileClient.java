@@ -1,7 +1,7 @@
 package com.workshop.procesador.feign;
 
 import com.workshop.procesador.configuration.FeignClientConfig;
-import com.workshop.procesador.dto.DocumentRequest;
+import com.workshop.procesador.dto.FileRequestDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.MediaType;

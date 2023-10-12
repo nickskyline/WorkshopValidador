@@ -1,22 +1,10 @@
 package com.workshop.procesador.service;
-
-import com.workshop.procesador.component.ProcesadorDocumentoStrategyFactory;
-import com.workshop.procesador.dto.DocumentoDto;
-import com.workshop.procesador.dto.ProcesadorDocumento;
-import com.workshop.procesador.feign.DocumentFeignClient;
+import com.workshop.procesador.component.FileProcessorStrategyFactory;
+import com.workshop.procesador.dto.FileDTO;
+import com.workshop.procesador.dto.FileProcessorDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-
-import javax.print.Doc;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -29,8 +17,8 @@ public class FileService {
 
         String fileType = fileDTO.getFileType();
 
-        GetStrategy getStrategy = FileProcessorStrategyFactory.getStrategy(fileType);
+        FileProcessorDTO getStrategy = fileProcessorStrategyFactory.getStrategy(fileType);
 
-        return getStrategy.FileProcess(FileDTO.getPath());
+        return getStrategy.fileProcess(fileDTO.getPath());
     }
 }

@@ -1,10 +1,10 @@
 package com.workshop.procesador.service;
 
 import com.poiji.bind.Poiji;
-import com.workshop.procesador.dto.DocumentRequest;
-import com.workshop.procesador.dto.DocumentXLSX;
-import com.workshop.procesador.dto.ProcesadorDocumento;
-import com.workshop.procesador.feign.DocumentFeignClient;
+import com.workshop.procesador.dto.FileProcessorDTO;
+import com.workshop.procesador.dto.FileRequestDTO;
+import com.workshop.procesador.dto.XLSXFileDTO;
+import com.workshop.procesador.feign.FeignFileClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,27 +14,27 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class LectorXLSX implements ProcesadorDocumento {
+public class XLSXReaderService implements FileProcessorDTO {
 
-    private FeignFileClient feignFileClient;
+    private final FeignFileClient feignFileClient;
 
     @Autowired
-    public XLSXReader(FeignFileClient feignFileClient) {
+    public XLSXReaderService(FeignFileClient feignFileClient) {
         this.feignFileClient = feignFileClient;
     }
 
     @Override
-    public Map<String, Integer> processFile(String file) {
+    public Map<String, Integer> fileProcess(String filePath) {
 
         int validRows = 0;
         int invalidRows = 0;
 
-        File file = new File(file);
-        List<XLSXFile> records = Poiji.fromExcel(file, XLSXFile.class);
+        File file = new File(filePath);
+        List<XLSXFileDTO> records = Poiji.fromExcel(file, XLSXFileDTO.class);
 
         Map<String, Integer> validations = new HashMap<>();
 
-        for (XLSXFile record: records) {
+        for (XLSXFileDTO record: records) {
             String row = record.getInjuryLocation()+","+record.getReportType();
             String[] arrayRow = row.split(",");
 

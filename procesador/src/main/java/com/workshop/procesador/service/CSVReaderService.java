@@ -15,22 +15,22 @@ import java.io.IOException;
 import java.util.*;
 
 @Component
-public class CSVReader implements FileProcessor {
+public class CSVReaderService implements FileProcessorDTO {
     private CSVReader reader;
     private String records[] = null;
     private FeignFileClient feignFileClient;
     @Autowired
-    public CSVReader(FeignFileClient feignFileClient) {
+    public CSVReaderService(FeignFileClient feignFileClient) {
         this.feignFileClient = feignFileClient;
     }
 
-    public Map<String, Integer> fileProcess(String file) {
+    public Map<String, Integer> fileProcess(String filePath) {
         int validRows = 0;
         int invalidRows = 0;
         Map<String, Integer> validations = new HashMap<>();
 
         try {
-            reader = new CSVReader(new FileReader(file));
+            reader = new CSVReader(new FileReader(filePath));
             boolean firstRow = true;
 
             while ((records = reader.readNext()) != null) {

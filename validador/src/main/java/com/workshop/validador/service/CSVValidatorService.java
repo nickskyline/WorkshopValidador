@@ -49,7 +49,7 @@ public class CSVValidatorService implements RecordValidatorDTO {
                 "Educational psychologist"
         };
         for (String validJobTitle : validJobTitles) {
-            if (jobTitle.equalsIgnoreCase(tituloValido)) {
+            if (jobTitle.equalsIgnoreCase(jobTitle)) {
                 return true;
             }
         }

@@ -1,7 +1,6 @@
 package com.workshop.validador.controller;
-
-import com.workshop.validador.model.DocumentRequest;
-import com.workshop.validador.service.ValidadorRegistroService;
+import com.workshop.validador.dto.FileRequestDTO;
+import com.workshop.validador.service.RecordsValidatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

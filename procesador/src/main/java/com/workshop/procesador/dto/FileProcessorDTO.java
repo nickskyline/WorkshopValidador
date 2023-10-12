@@ -4,5 +4,5 @@ import java.io.FileNotFoundException;
 import java.util.Map;
 
 public interface FileProcessorDTO {
-    Map<String, Integer> FileProcess(String file) throws FileNotFoundException;
+    Map<String, Integer> fileProcess(String file) throws FileNotFoundException;
 }

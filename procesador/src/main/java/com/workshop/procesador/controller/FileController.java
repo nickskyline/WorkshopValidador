@@ -22,6 +22,6 @@ public class FileController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<Map<String, Integer>> uploadFile(@RequestBody FileDTO fileDTO) throws FileNotFoundException {
-        return new ResponseEntity<>(this.fileService.uploadFile(file), HttpStatus.CREATED);
+        return new ResponseEntity<>(this.fileService.uploadFile(fileDTO), HttpStatus.CREATED);
     }
 }

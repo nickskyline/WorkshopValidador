@@ -21,14 +21,14 @@ public class FileProcessorStrategyFactory {
     @Autowired
     public FileProcessorStrategyFactory(CSVReaderService csvReaderService, XLSXReaderService xlsxReaderService) {
         this.csvReaderService = csvReaderService;
-        this.XLSXReaderService = xlsxReaderService;
+        this.xlsxReaderService = xlsxReaderService;
         strategies = new HashMap<>(){{
             put(".csv", csvReaderService);
             put(".xlsx", xlsxReaderService);
         }};
     }
 
-    public GetStrategy getStrategy(String fileType) {
+    public FileProcessorDTO getStrategy(String fileType) {
             return strategies.get(fileType);
         }
     }
