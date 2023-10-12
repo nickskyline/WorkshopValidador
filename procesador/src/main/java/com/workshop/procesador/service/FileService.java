@@ -16,9 +16,10 @@ public class FileService {
     public Map<String, Integer> uploadFile(FileDTO fileDTO) throws FileNotFoundException {
 
         String fileType = fileDTO.getFileType();
+        String path = fileDTO.getPath();
 
         FileProcessorDTO getStrategy = fileProcessorStrategyFactory.getStrategy(fileType);
 
-        return getStrategy.fileProcess(fileDTO.getPath());
+        return getStrategy.fileProcess(path);
     }
 }
