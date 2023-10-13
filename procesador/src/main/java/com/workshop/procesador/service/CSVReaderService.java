@@ -32,10 +32,11 @@ public class CSVReaderService implements FileProcessorDTO {
         //Este nuevo lector lector lo que hace es simplemente transformar las otras posiciones de las lineas invalidas en strings vacios ""
 
         try (CSVReader reader = new CSVReaderBuilder(new FileReader(filePath))
-                .withCSVParser(new CSVParserBuilder().withSeparator(',').withQuoteChar('"').build())
-                //Este skip line simplemente salta la primera linea de los titulos
+                .withCSVParser(new CSVParserBuilder().withIgnoreQuotations(true) // Ignorar comillas
+                        .build())
                 .withSkipLines(1)
-                .build()) {
+                .build())
+        {
 
             String[] records;
 
