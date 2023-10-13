@@ -34,10 +34,13 @@ public class CSVValidatorService implements RecordValidatorDTO {
     }
 
     public boolean validateBirthdate(String birhtdate) {
-        DateTimeFormatter formatoMmDdYyyy = DateTimeFormatter.ofPattern("yyyy-M-d");
-        LocalDate baseDate = LocalDate.of(1980, 1, 1);
-        LocalDate inputDate = LocalDate.parse(birhtdate, formatoMmDdYyyy);
-        return inputDate.isAfter(baseDate);
+        if (birhtdate.equals("")) {
+            return false;
+        }
+            DateTimeFormatter formatoMmDdYyyy = DateTimeFormatter.ofPattern("yyyy-M-d");
+            LocalDate baseDate = LocalDate.of(1980, 1, 1);
+            LocalDate inputDate = LocalDate.parse(birhtdate, formatoMmDdYyyy);
+            return inputDate.isAfter(baseDate);
     }
 
     public boolean validateJobTitle(String jobTitle) {
